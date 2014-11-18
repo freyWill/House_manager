@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block 'deposit' %}
+
+<div class="form_group">
+	<p>Deposit:</p>
+	<form class="form_control" method="post" action="{% url 'deposit' %}">
+		{% csrf_token %} 
+		{{ form.errors }}
+	   {{ form.ammount }}
+	   {{ form.ammount.label }} <br/>
+	   {# {{ form.ammount.label }} #}
+	   <input type="submit" value="Order payment" class="btn btn-primary"/>
+	</form>
+</div>
+
+
+
+{% endblock %}

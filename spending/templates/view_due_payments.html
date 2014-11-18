@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block 'view_due_payments' %}
+
+
+	<div class="full_table">
+		<p>Payments due:</p>
+		<table>
+		<tr class="tableHeader">
+			<td>Ammount</td> 
+			<td>Date</td>
+			<td>Type</td>
+			<td>Claim Paid</td>
+		</tr>
+		{% for bill in bills %}
+			 <tr {% if forloop.counter0|divisibleby:2 %} class="tableDark"{% endif %}>
+				<td>&pound;{{bill.ammount|floatformat:"0"}}</td> 
+				<td>{{bill.theDate}}</td>
+				<td>{{bill.billType}}</td>
+				<td>
+					{% if bill.paid == False %}
+						<a class="center glyphicon glyphicon-ok" href="{% url 'claimPaid' bill.pk %}"><a>
+					{% else %}
+						<p>Waiting for confirmation</p>
+					{%endif%}
+
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+
+
+	<div class="full_table">
+		<p>Payment History</p>
+		<table>
+		<tr class="tableHeader">
+			<td>Ammount</td> 
+			<td>Date</td>
+			<td>Type</td>
+		</tr>
+		{% for bill in pastBills %}
+			 <tr {% if forloop.counter0|divisibleby:2 %} class="tableDark"{% endif %}>
+				<td>&pound;{{bill.ammount|floatformat:"0"}}</td> 
+				<td>{{bill.theDate}}</td>
+				<td>{{bill.billType}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+
+
+{% endblock %}

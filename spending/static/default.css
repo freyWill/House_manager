@@ -1,0 +1,125 @@
+body{
+	/*background: red;*/
+	/*background-image: url("squairy_light.png");*/
+}
+
+.content{
+	margin:10px;
+}
+
+.tableDark{
+	background:#ddd;
+}
+
+.header ul{
+	margin:auto;
+	padding-top:5px;
+}
+
+.center{
+	text-align: center;
+}
+
+.header li{
+
+	display:inline-block;
+}
+
+.header{
+	padding-left:20px;
+	padding-top:10px;
+	height:50px;
+	background:#3498db;
+}
+
+.header a{
+	/*padding:20px;*/
+	margin:20px;
+
+	color:white;
+	text-decoration: none;
+	font-size:1.2em;
+}
+
+.header span{
+	color:white;
+	margin-left:20px;
+	font-size:1.2em;
+}
+
+.sub_header{
+	color:white;
+	padding-left:50px;
+	height:20px;
+	background:#6BB9F0;
+}
+
+.tableHeader{
+	background:#446CB3;
+	color:white;
+	border-radius:5px;
+}
+
+.tableHeader td{
+	padding:8px;
+}
+
+td{
+	padding:5px;
+	text-align:center;
+}
+
+tbody{
+	border:1px solid #eee;
+}
+
+table{
+	width:100%;
+}
+
+.index_table{
+	margin-top:15px;
+	width:49%;
+	display:inline-block;
+}
+
+.breadcrumb{
+	background:#3498db;
+}
+
+.form_group{
+	padding:10px;
+	border:1px solid #eee;
+}
+
+#id_ammount{
+	height:35px;
+}
+
+#id_description{
+	height:35px;
+}
+
+.form_control input{
+	margin-top:10px;
+}
+
+.dropdown{
+	position:absolute;
+	background:#3498db;
+	display:none;
+	padding-left:5px;
+
+}
+
+.hover:hover .dropdown{
+	display:inline-block;
+}
+
+.dropdown li{
+	display:block;
+}
+
+a:hover{
+	color:#CE0;
+}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block 'payback_view' %}
+
+<div class="full_table">
+		<p>Waiting confirmation:</p>
+		<table>
+		<tr class="tableHeader">
+			<td>Ammount</td> 
+			<td>Person</td> 
+			<td>Date</td>
+			<td>Type</td>
+			<td>Confirm</td>
+		</tr>
+		{% for noConf in notConfirmed %}
+			 <tr {% if forloop.counter0|divisibleby:2 %} class="tableDark"{% endif %}>
+				<td>&pound;{{noConf.ammount|floatformat:"0"}}</td> 
+				<td>{{noConf.person}}</td>
+				<td>{{noConf.theDate}}</td>
+				<td>{{noConf.billType}}</td>
+				<td> <a href="{% url 'confirmPaid' noConf.pk %}">Confirm</a> </td>
+			</tr>
+		{% endfor %}
+		</table>
+</div>
+
+<div class="full_table">
+		<p>Not Paid:</p>
+		<table>
+		<tr class="tableHeader">
+			<td>Ammount</td> 
+			<td>Person</td>
+			<td>Date</td>
+			<td>Type</td>
+		</tr>
+		{% for entry in notPaid %}
+			 <tr {% if forloop.counter0|divisibleby:2 %} class="tableDark"{% endif %}>
+				<td>&pound;{{entry.ammount|floatformat:"0"}}</td> 
+				<td>{{entry.person}}</td>
+				<td>{{entry.theDate}}</td>
+				<td>{{entry.billType}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+</div>
+
+<div class="full_table">
+		<p>Paid history:</p>
+		<table>
+		<tr class="tableHeader">
+			<td>Ammount</td> 
+			<td>Person</td>
+			<td>Date</td>
+			<td>Type</td>
+		</tr>
+		{% for entry in oldTransactions %}
+			 <tr {% if forloop.counter0|divisibleby:2 %} class="tableDark"{% endif %}>
+				<td>&pound;{{entry.ammount|floatformat:"0"}}</td> 
+				<td>{{entry.person}}</td>
+				<td>{{entry.theDate}}</td>
+				<td>{{entry.billType}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+</div>
+
+{% endblock %}

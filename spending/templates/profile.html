@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block 'payments' %}
+
+<h1>{{name}}'s page</h1>
+<div>
+	<p>Purchase history:</p>
+	<table class="full_table">
+	<tr class="tableHeader">
+		<td>Ammount</td> 
+		<td>Description</td>
+		<td>Date</td>
+		<td>Remove</td>
+	</tr>
+	{% for purchase in purchases %}
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" \t{% endif %}>
+			<td>&pound;{{purchase.ammount|floatformat:"0"}}</td> 
+			<td>{{purchase.description}}</td>
+			<td>{{purchase.theDate}}</td>
+			<td><a href="{% url 'removeProduct' purchase.pk %}"><span class="glyphicon glyphicon-remove-sign"></a></span></td>
+		</tr>
+	{% endfor %}
+	</table style="width:100%;">
+</div>
+
+
+<div class="index_table">
+	<p>Deposit history:</p>
+	<table>
+	<tr class="tableHeader">
+		<td>Ammount</td> 
+		<td>Date</td>
+	</tr>
+	{% for deposit in deposits %}
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" \t{% endif %}>
+			<td>&pound;{{deposit.ammount|floatformat:"0"}}</td> 
+			<td>{{deposit.theDate}}</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+
+<div class="index_table">
+	<p>Withdrawal history:</p>
+	<table>
+	<tr class="tableHeader">
+		<td>Ammount</td> 
+		<td>Date</td>
+	</tr>
+	{% for withdraw in withdrawals %}
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" \t{% endif %}>
+			<td>&pound;{{withdraw.ammount|floatformat:"0"}}</td> 
+			<td>{{withdraw.theDate}}</td>
+		</tr>
+	{% endfor %}
+
+	</table>
+</div>
+
+
+
+{% endblock %}

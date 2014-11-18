@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block 'index' %}
+	
+	Visit page:
+	{% for user in users %}
+		<a href="{% url 'profile' user.username %}">{{user}}</a>
+	{% endfor %} <br/>
+
+
+<div>
+	<p>All purchases:</p>
+	<table class="full_table">
+	<tr class="tableHeader">
+		<td>By</td> 
+		<td>Description</td>
+		<td>Ammount</td> 
+
+		<td>Date</td>
+	</tr>
+	{% for purchase in purchases %}
+
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+			<td>{{purchase.person.user}}</td>
+			<td>&pound;{{purchase.ammount|floatformat:"0"}}</td> 
+			<td>{{purchase.description}}</td>
+			<td>{{purchase.theDate}}</td>
+		</tr>
+	{% endfor %}
+	</table style="width:100%;">
+</div>
+
+
+
+	<div>
+	<p>All Deposits:</p>
+	<table class="full_table">
+	<tr class="tableHeader">
+		<td>By</td> 
+		<td>Deposited</td> 
+		<td>Description</td>
+
+		<td>Date</td>
+	</tr>
+	{% for deposit in deposits %}
+
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+			<td>{{deposit.person.user}}</td>
+			<td>&pound;{{deposit.ammount|floatformat:"0"}}</td> 
+			<td>{{deposit.theDate}}</td>
+		</tr>
+	{% endfor %}
+	</table style="width:100%;">
+</div>
+
+	<div>
+	<p>All Deposits:</p>
+	<table class="full_table">
+	<tr class="tableHeader">
+		<td>By</td> 
+		<td>Ammount</td> 
+		<td>Date</td>
+	</tr>
+	{% for withdrawal in withdrawals %}
+
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+			<td>{{withdrawal.person.user}}</td>
+			<td>&pound;{{withdrawal.ammount|floatformat:"0"}}</td> 
+			<td>{{withdrawal.theDate}}</td>
+		</tr>
+	{% endfor %}
+	</table style="width:100%;">
+</div>
+
+	Total house balance: {{total_ammount}}
+
+{% endblock 'index' %}

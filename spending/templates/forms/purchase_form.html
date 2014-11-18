@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block 'add_expense' %}
+
+<div class="form_group">
+	<p>Add Payment:</p>
+	<form class="form_control" method="post" action="{% url 'addExpense' %}">
+		{% csrf_token %} 
+		 {{ form.ammount }}
+		 {{ form.ammount.label }} <br/>
+
+		 {{ form.description }}
+		 {{ form.description.label }} <br/>
+
+		 
+		 <input type="submit" value="ADD" class="btn btn-primary"/>
+	</form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block 'withdraw' %}
+
+<div class="form_group">
+	<p>Withdraw:</p>
+	<form class="form_control" method="post" action="{% url 'withdraw' %}">
+		{% csrf_token %} 
+	   {{ form.ammount }}<br/>
+	   {# {{ form.ammount.label }} #}
+	   <input type="submit" value="Withdraw" class="btn btn-primary"/>
+	</form>
+</div>
+
+
+{% endblock %}

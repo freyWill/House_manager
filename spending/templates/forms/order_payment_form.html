@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block 'order_payment' %}
+
+<div class="form_group">
+	<p>Order payment:</p>
+	<p>Input the total ammount, it will then be equaly split in 4.</p>
+	<form class="form_control" method="post" action="{% url 'orderBills' %}">
+		{% csrf_token %} 
+		{{ form.errors }}
+	   {{ form.ammount }}
+	   {{ form.ammount.label }} <br/>
+	   {{ form.billType }} <br/>
+
+	   <input type="submit" value="Order" class="btn btn-primary"/>
+	</form>
+</div>
+
+{% endblock %}
