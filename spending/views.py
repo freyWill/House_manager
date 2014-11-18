@@ -7,8 +7,38 @@ from django.core.context_processors import csrf
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
+def check_budget():
+	users = Person.objects.all()
+	deduction = True
+	for user in users:
+		if user.ammount > -10:
+			deduction = False
+	return deduction
+
+def deduct_total():
+	persons = Person.objects.all()
+	lowest = persons[0].ammount
+	agreed = 0
+	for person in persons:
+		if person.ammount > lowest and person.ammount < 0:
+			lowest = user.ammount
+		if person.deduct == True:
+			agreed+=1
+	print agreed
+	if agreed != 4:
+		return
+	else:
+		for person in persons:
+			person.ammount += abs(lowest)
+			person.deduct = False
+			person.save()
+
+
 @login_required
 def home(request):
+	deduction = check_budget()
+	if deduction:
+		deduct_total()
 
 	people = Person.objects.all()
 	total_ammount = 0
@@ -20,10 +50,11 @@ def home(request):
 		'profile' : Person.objects.get(user = request.user),
 		'total_ammount':total_ammount,
 		'user':request.user,
+		'deduction' : deduction,
 		'users' : User.objects.all().exclude(username = 'root'),
-		'purchases' : Purchase.objects.all(),
-		'deposits' : Deposit.objects.all(),
-		'withdrawals' : Withdraw.objects.all(),
+		'purchases' : Purchase.objects.all().order_by('-theDate'),
+		'deposits' : Deposit.objects.all().order_by('-theDate'),
+		'withdrawals' : Withdraw.objects.all().order_by('-theDate'),
 
 		}
 
@@ -31,7 +62,6 @@ def home(request):
 
 @login_required
 def profile(request, username):
-	print username
 	if request.user.is_authenticated():
 		# fetch person object
 		currentPerson = Person.objects.get(user__username = username)
@@ -68,7 +98,16 @@ def addExpense(request):
 			currentPerson.ammount -= newPurchase.ammount
 			currentPerson.save()
 
-			return redirect("index")	
+			message = {
+				"expense" : newPurchase.ammount,
+				'profile' : Person.objects.get(user__username = request.user.username),
+				"notification" : True,
+				"description" : newPurchase.description,
+				"user" : request.user,
+				'users' : User.objects.all().exclude(username = 'root'),
+			}
+
+			return render_to_response("index.html", message)	
 	else:
 		form = PurchaseForm()
 
@@ -88,6 +127,7 @@ def deletePurchase(request, product_id):
 
 	data = {
 		'user' : request.user,
+		'users' : User.objects.all().exclude(username = 'root'),
  	}
 
 	productToDelete = Purchase.objects.get(pk=product_id)
@@ -167,6 +207,12 @@ def withdraw(request):
 	}
 	return render_to_response("forms/withdraw_form.html", data, context_instance=RequestContext(request))
 
+def confirmDeduct(request):
+	me = Person.objects.get(user = request.user)
+	me.deduct = True
+	me.save()
+	return redirect("index")
+
 @login_required
 def orderBills(request):
 
@@ -204,7 +250,8 @@ def viewDuePayments(request):
 	currentPerson = Person.objects.get(user= request.user)
 	dueBills = MonthlyBill.objects.filter(person = currentPerson, confirmed=False)
 	pastBills = MonthlyBill.objects.filter(person = currentPerson, confirmed=True)
-
+	if dueBills is None:
+		dueBills = "asd"
 	data = {
 		'bills' : dueBills,
 		'pastBills' : pastBills,

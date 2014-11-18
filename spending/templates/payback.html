@@ -2,10 +2,10 @@
 
 {% block 'payback_view' %}
 
-<div class="full_table">
-		<p>Waiting confirmation:</p>
+<div class="full_table alert">
+		<p class="alert-warning">Waiting confirmation:</p>
 		<table>
-		<tr class="tableHeader">
+		<tr class="tableHeader" style="background:#E6D707">
 			<td>Ammount</td> 
 			<td>Person</td> 
 			<td>Date</td>
@@ -23,11 +23,11 @@
 		{% endfor %}
 		</table>
 </div>
-
-<div class="full_table">
-		<p>Not Paid:</p>
+<hr/>
+<div class="full_table expense alert">
+		<p class="alert-danger">Not Paid:</p>
 		<table>
-		<tr class="tableHeader">
+		<tr class="tableHeader" style="background:#E60737">
 			<td>Ammount</td> 
 			<td>Person</td>
 			<td>Date</td>
@@ -43,8 +43,8 @@
 		{% endfor %}
 		</table>
 </div>
-
-<div class="full_table">
+<hr/>
+<div class="full_table alert">
 		<p>Paid history:</p>
 		<table>
 		<tr class="tableHeader">

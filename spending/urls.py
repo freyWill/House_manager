@@ -3,6 +3,7 @@ from django.conf.urls import url
 
 urlpatterns = [
 	url(r'^$', 'spending.views.home', name='index'),
+	url(r'deduct/', 'spending.views.confirmDeduct', name='confirmDeduct'),
 	url(r'profile/(?P<username>\w+)/', 'spending.views.profile', name='profile'),
 	url(r'addExpense/', 'spending.views.addExpense', name='addExpense'),
 	url(r'deposit/', 'spending.views.deposit', name='deposit'),

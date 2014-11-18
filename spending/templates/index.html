@@ -2,9 +2,27 @@
 
 {% block 'index' %}
 
-<style type="text/css">body{ background: url(http://subtlepatterns.com/patterns/cream_pixels.png); }</style>
+{% if deduction %}
+	{% if profile.deduct %}
+		<p class="aler alert-danger">Waiting for deduction confirmation</a></p>
+	{% else %}
+		<p class="aler alert-danger"><a href="{% url 'confirmDeduct' %}">Confirm deduct</a></p>
+	{% endif %}
+{% endif %}
 
-	Visit page:
+{% if notification %}
+	<div class="alert alert-success" role="alert">
+  	<p>Added {{expense}} for {{description}}</p>
+	</div>
+{% endif %}
+<hr/>
+<button type="button" class="btn btn-danger"><a class="board_actions" href="{% url 'addExpense' %}">Add expense</a></button>
+<button type="button" class="btn btn-success"><a class="board_actions" href="{% url 'deposit' %}">Deposit</a></button>
+<button type="button" class="btn btn-info"><a class="board_actions" href="{% url 'withdraw' %}">Withdraw</a></button>
+
+<style type="text/css">body{ background: url(http://subtlepatterns.com/patterns/cream_pixels.png); }</style>
+<hr/>
+	<p>Visit page:</p>
 	{% for user in users %}
 		<a href="{% url 'profile' user.username %}">{{user}}</a>
 	{% endfor %} <br/>
@@ -12,7 +30,7 @@
 
 <div>
 <hr/>
-	<p>All purchases:</p>
+	<p>Last 30 purchases:</p>
 	<table class="full_table">
 	<tr class="tableHeader purchase">
 		<td>By</td> 
@@ -21,6 +39,7 @@
 		<td>Description</td>
 
 		<td>Date</td>
+		<td></td>
 	</tr>
 	{% for purchase in purchases %}
 
@@ -29,6 +48,7 @@
 			<td>&pound;{{purchase.ammount}}</td> 
 			<td>{{purchase.description}}</td>
 			<td>{{purchase.theDate}}</td>
+			{% if user == purchase.person.user %}<td><a href="{% url 'removeProduct' purchase.pk %}"><span class="glyphicon glyphicon-remove-sign"></a></span></td>  {% else %} <td></td> {% endif %}
 		</tr>
 	{% endfor %}
 	</table style="width:100%;">
@@ -37,7 +57,7 @@
 
 <hr/>
 	<div>
-	<p>All Deposits:</p>
+	<p>Last 30 Deposits:</p>
 	<table class="full_table">
 	<tr class="tableHeader deposit">
 		<td>By</td> 
@@ -58,7 +78,7 @@
 <hr/>
 	<div>
 
-	<p>All Withdrawals:</p>
+	<p>Last 30 Withdrawals:</p>
 	<table class="full_table">
 	<tr class="tableHeader wwithdraw">
 		<td>By</td> 
@@ -80,9 +100,6 @@
 
 <br/>
 
-<button type="button" class="btn btn-danger"><a class="board_actions" href="{% url 'addExpense' %}">Add expense</a></button>
-<button type="button" class="btn btn-success"><a class="board_actions" href="{% url 'deposit' %}">Deposit</a></button>
-<button type="button" class="btn btn-info"><a class="board_actions" href="{% url 'withdraw' %}">Withdraw</a></button>
 <br/>
-<p>Total house balance: {{total_ammount}}</p>
+<p>House balance: {{total_ammount}}</p>
 {% endblock 'index' %}

@@ -12,9 +12,14 @@ def validate_withdraw(value):
 	if value <= 0:
 			raise ValidationError("Positive values please !")
 
+def validate_purchase(value):
+	if value <= 0:
+			raise ValidationError("Positive values please !")
+
 class Person(models.Model):
 	ammount = models.FloatField()
 	user = models.OneToOneField(User)
+	deduct = models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.user.username
@@ -29,7 +34,7 @@ class MonthlyBill(models.Model):
 
 
 class Purchase(models.Model):
-	ammount = models.FloatField()
+	ammount = models.FloatField(validators=[validate_purchase])
 	person = models.ForeignKey(Person)
 	description = models.CharField(max_length=220)
 	theDate = models.DateTimeField(default=timezone.now)

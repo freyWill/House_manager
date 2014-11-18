@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block 'payments' %}
+<div class="pattern_background"><h1>{{name}}'s page </h1> Ammount: &pound;{{profile.ammount}}</div>
+<hr/>
 
-
-<div class="pattern_background"><h1>{{name}}'s page</h1></div>
-
+<button type="button" class="btn btn-danger"><a class="board_actions" href="{% url 'addExpense' %}">Add expense</a></button>
+<button type="button" class="btn btn-success"><a class="board_actions" href="{% url 'deposit' %}">Deposit</a></button>
+<button type="button" class="btn btn-info"><a class="board_actions" href="{% url 'withdraw' %}">Withdraw</a></button>
+<hr/>
 <div>
 	<p>Purchase history:</p>
 	<table class="full_table">
@@ -19,7 +22,7 @@
 			<td>&pound;{{purchase.ammount}}</td> 
 			<td>{{purchase.description}}</td>
 			<td>{{purchase.theDate}}</td>
-			<td><a href="{% url 'removeProduct' purchase.pk %}"><span class="confirm glyphicon glyphicon-remove-sign"></a></span></td>
+			<td><a href="{% url 'removeProduct' purchase.pk %}"><span class="glyphicon glyphicon-remove-sign"></a></span></td>
 		</tr>
 	{% endfor %}
 	</table style="width:100%;">
@@ -58,12 +61,7 @@
 	{% endfor %}
 
 	</table>
-
-
 </div>
 <hr/>
-<button type="button" class="btn btn-danger"><a class="board_actions" href="{% url 'addExpense' %}">Add expense</a></button>
-<button type="button" class="btn btn-success"><a class="board_actions" href="{% url 'deposit' %}">Deposit</a></button>
-<button type="button" class="btn btn-info"><a class="board_actions" href="{% url 'withdraw' %}">Withdraw</a></button>
 
 {% endblock %}
