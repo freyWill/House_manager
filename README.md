@@ -1,28 +1,9 @@
-# README #
+The purpouse of this project is for me and my roomates to manage our house transactions, purchases and few other things.
 
-It requires postgres
-### What is this repository for? ###
+Requires Django 1.7.1
+psycopg2
+Postgres
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Please configure your postgres settings in the settings file.
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+To generate the 4 default users go to /makeusers, this will create the 4 people : username/password (plamen/plamen, daniel/daniel, alek/alek, dennis/dennis)
