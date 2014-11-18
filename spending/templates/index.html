@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block 'index' %}
-	
+
+<style type="text/css">body{ background: url(http://subtlepatterns.com/patterns/cream_pixels.png); }</style>
+
 	Visit page:
 	{% for user in users %}
 		<a href="{% url 'profile' user.username %}">{{user}}</a>
@@ -9,20 +11,22 @@
 
 
 <div>
+<hr/>
 	<p>All purchases:</p>
 	<table class="full_table">
-	<tr class="tableHeader">
+	<tr class="tableHeader purchase">
 		<td>By</td> 
-		<td>Description</td>
 		<td>Ammount</td> 
+
+		<td>Description</td>
 
 		<td>Date</td>
 	</tr>
 	{% for purchase in purchases %}
 
-		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+		 <tr {% if forloop.counter0|divisibleby:2 %} class="one_off" {% endif %}>
 			<td>{{purchase.person.user}}</td>
-			<td>&pound;{{purchase.ammount|floatformat:"0"}}</td> 
+			<td>&pound;{{purchase.ammount}}</td> 
 			<td>{{purchase.description}}</td>
 			<td>{{purchase.theDate}}</td>
 		</tr>
@@ -31,47 +35,54 @@
 </div>
 
 
-
+<hr/>
 	<div>
 	<p>All Deposits:</p>
 	<table class="full_table">
-	<tr class="tableHeader">
+	<tr class="tableHeader deposit">
 		<td>By</td> 
 		<td>Deposited</td> 
-		<td>Description</td>
-
 		<td>Date</td>
 	</tr>
 	{% for deposit in deposits %}
 
-		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+		 <tr {% if forloop.counter0|divisibleby:2 %} class="one_off" {% endif %}>
 			<td>{{deposit.person.user}}</td>
-			<td>&pound;{{deposit.ammount|floatformat:"0"}}</td> 
+			<td>&pound;{{deposit.ammount}}</td> 
 			<td>{{deposit.theDate}}</td>
 		</tr>
 	{% endfor %}
 	</table style="width:100%;">
 </div>
 
+<hr/>
 	<div>
-	<p>All Deposits:</p>
+
+	<p>All Withdrawals:</p>
 	<table class="full_table">
-	<tr class="tableHeader">
+	<tr class="tableHeader wwithdraw">
 		<td>By</td> 
 		<td>Ammount</td> 
 		<td>Date</td>
 	</tr>
 	{% for withdrawal in withdrawals %}
 
-		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+		 <tr {% if forloop.counter0|divisibleby:2 %} class="one_off" {% endif %}>
 			<td>{{withdrawal.person.user}}</td>
-			<td>&pound;{{withdrawal.ammount|floatformat:"0"}}</td> 
+			<td>&pound;{{withdrawal.ammount}}</td> 
 			<td>{{withdrawal.theDate}}</td>
 		</tr>
 	{% endfor %}
 	</table style="width:100%;">
 </div>
 
-	Total house balance: {{total_ammount}}
 
+
+<br/>
+
+<button type="button" class="btn btn-danger"><a class="board_actions" href="{% url 'addExpense' %}">Add expense</a></button>
+<button type="button" class="btn btn-success"><a class="board_actions" href="{% url 'deposit' %}">Deposit</a></button>
+<button type="button" class="btn btn-info"><a class="board_actions" href="{% url 'withdraw' %}">Withdraw</a></button>
+<br/>
+<p>Total house balance: {{total_ammount}}</p>
 {% endblock 'index' %}

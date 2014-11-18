@@ -6,11 +6,12 @@
 	<p>Add Payment:</p>
 	<form class="form_control" method="post" action="{% url 'addExpense' %}">
 		{% csrf_token %} 
-		 {{ form.ammount }}
-		 {{ form.ammount.label }} <br/>
-
-		 {{ form.description }}
-		 {{ form.description.label }} <br/>
+		{{ form.ammount.errors }}
+		{{ form.description.errors }}
+		{{ form.ammount }}
+		{{ form.ammount.label }} <br/>
+	 {{ form.description }}
+	 {{ form.description.label }} <br/>
 
 		 
 		 <input type="submit" value="ADD" class="btn btn-primary"/>

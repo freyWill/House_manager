@@ -112,6 +112,26 @@ table{
 
 }
 
+.purchase{
+	background-color:#d43f3a;
+}
+
+.deposit{
+	background-color:#4cae4c;
+}
+
+.one_off{
+	background-color:#ddd;
+}
+
+.history{
+	background: #888;
+}
+
+.withdraw{
+	background-color: #5bc0de;
+}
+
 .hover:hover .dropdown{
 	display:inline-block;
 }
@@ -121,5 +141,9 @@ table{
 }
 
 a:hover{
-	color:#CE0;
+	/*color:#CE0;*/
+}
+
+.board_actions{
+	color:white;
 }

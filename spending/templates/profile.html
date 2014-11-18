@@ -2,11 +2,13 @@
 
 {% block 'payments' %}
 
-<h1>{{name}}'s page</h1>
+
+<div class="pattern_background"><h1>{{name}}'s page</h1></div>
+
 <div>
 	<p>Purchase history:</p>
 	<table class="full_table">
-	<tr class="tableHeader">
+	<tr class="tableHeader purchase">
 		<td>Ammount</td> 
 		<td>Description</td>
 		<td>Date</td>
@@ -14,26 +16,26 @@
 	</tr>
 	{% for purchase in purchases %}
 		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" \t{% endif %}>
-			<td>&pound;{{purchase.ammount|floatformat:"0"}}</td> 
+			<td>&pound;{{purchase.ammount}}</td> 
 			<td>{{purchase.description}}</td>
 			<td>{{purchase.theDate}}</td>
-			<td><a href="{% url 'removeProduct' purchase.pk %}"><span class="glyphicon glyphicon-remove-sign"></a></span></td>
+			<td><a href="{% url 'removeProduct' purchase.pk %}"><span class="confirm glyphicon glyphicon-remove-sign"></a></span></td>
 		</tr>
 	{% endfor %}
 	</table style="width:100%;">
 </div>
-
+<hr/>
 
 <div class="index_table">
 	<p>Deposit history:</p>
 	<table>
-	<tr class="tableHeader">
+	<tr class="tableHeader deposit">
 		<td>Ammount</td> 
 		<td>Date</td>
 	</tr>
 	{% for deposit in deposits %}
 		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" \t{% endif %}>
-			<td>&pound;{{deposit.ammount|floatformat:"0"}}</td> 
+			<td>&pound;{{deposit.ammount}}</td> 
 			<td>{{deposit.theDate}}</td>
 		</tr>
 	{% endfor %}
@@ -49,15 +51,19 @@
 		<td>Date</td>
 	</tr>
 	{% for withdraw in withdrawals %}
-		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" \t{% endif %}>
-			<td>&pound;{{withdraw.ammount|floatformat:"0"}}</td> 
+		 <tr {% if forloop.counter0|divisibleby:2 %} style="background-color:#ddd;" {% endif %}>
+			<td>&pound;{{withdraw.ammount}}</td> 
 			<td>{{withdraw.theDate}}</td>
 		</tr>
 	{% endfor %}
 
 	</table>
+
+
 </div>
-
-
+<hr/>
+<button type="button" class="btn btn-danger"><a class="board_actions" href="{% url 'addExpense' %}">Add expense</a></button>
+<button type="button" class="btn btn-success"><a class="board_actions" href="{% url 'deposit' %}">Deposit</a></button>
+<button type="button" class="btn btn-info"><a class="board_actions" href="{% url 'withdraw' %}">Withdraw</a></button>
 
 {% endblock %}

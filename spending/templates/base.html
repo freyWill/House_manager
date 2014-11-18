@@ -5,17 +5,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	<title>Hello</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	
+	<script type="text/javascript" src="{% static 'js/jquery.confirm.min.js' %}"></script>
+	<script type="text/javascript">$(".confirm").confirm();</script>
+	<script type="text/javascript" src="{% static 'js/default.js' %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'default.css' %}"/
 </head>
 <body>
 <div class="header">
 	<ul class='breadcrumb'>
 	{# {{user.username}} #}
+		<li><a href="{% url 'home' %}">The Board</a></li>
 
 		<li><a href="{% url 'profile' user %}">Profile</a></li>
 		{% ifequal user.username 'daniel' %} <li><a href="{% url 'orderBills' %}">Order Bills</a></li> {% endifequal %}
-		<li><a href="{% url 'home' %}">Overview</a></li>
 		{% ifnotequal user.username 'daniel' %} 
 			<li><a href="{% url 'viewDuePayment' %}">Payments due</a></li> 
 		
@@ -23,14 +25,6 @@
 			<li><a href="{% url 'paybackView' %}">View Payments</a></li>
 		{% endifnotequal %}
 		
-		<li class="hover">
-			<span>Actions</span>
-			<ul class="dropdown">
-				<li><a href="{% url 'addExpense' %}">Add expense</a></li>
-				<li><a href="{% url 'deposit' %}">Deposit</a></li>
-				<li><a href="{% url 'withdraw' %}">Withdraw</a></li>
-			</ul>
-		</li>
 		{% if user.is_authenticated %}
 			<li><a href="{% url 'logout' %}">Logout</a></li>
 		{% else %}
