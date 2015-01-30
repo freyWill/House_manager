@@ -1,9 +1,45 @@
-The purpouse of this project is for me and my roomates to manage our house transactions, purchases and few other things.
+# What is house manager
+It's a small django application that runs on top of the Raspberry Pi that is used as... a house manager.  
+I wrote the app to have some Django-fun but also, because having roommates requires some management.  
+This helps noting down groceries spending and bills.
 
-Requires Django 1.7.1
-psycopg2
-Postgres
+# Bootstrap it
 
-Please configure your postgres settings in the settings file.
+Requirements:
+* [Django 1.7](https://docs.djangoproject.com/en/1.7/releases/1.7.1/),
+* [Sqlite3](https://www.sqlite.org/),
+* [django-autofixture](https://github.com/gregmuellegger/django-autofixture),
+* [Pip](https://bootstrap.pypa.io/get-pip.py)
+* Python 2.7,
+* [Virtualenv](https://virtualenv.pypa.io/en/latest/)
 
-To generate the 4 default users go to /makeusers, this will create the 4 people : username/password (plamen/plamen, daniel/daniel, alek/alek, dennis/dennis)
+1. Open a terminal (or git bash) and clone this project:
+<pre> git clone git@github.com:freyWill/house_manager.git </pre>
+
+2. Change directory in your terminal inside the project:
+<pre>cd (yourpath)/house_manager</pre>
+
+3. Setup virtual environment
+<pre>virtualenv env</pre>
+
+4. Install requirements, create migrations, create dummy data, run it
+<pre>
+source env/bin/activate &&
+pip install django==1.7.1 &&
+pip install django-autofixture &&
+python manage.py migrate &&
+python manage.py createsuperuser # create your superuser account
+</pre>
+
+4. Run server with `python manage.py runserver` and visit [Localhost's admin panel](localhost:8000/admin). From there, create few fake users.
+
+5. Load dummy data
+<pre>
+  python manage.py loadtestdata spending.Deposit:10 &&
+  python manage.py loadtestdata spending.MonthlyBills:10 &&
+  python manage.py loadtestdata spending.Person:10 &&
+  python manage.py loadtestdata spending.Purchase:10 &&
+  python manage.py loadtestdata spending.Withdraw:10
+</pre>
+
+6. Now run server with `python manage.py runserver` and open http://localhost:8000 & enjoy :) !
