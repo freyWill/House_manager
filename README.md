@@ -31,9 +31,11 @@ python manage.py migrate &&
 python manage.py createsuperuser # create your superuser account
 </pre>
 
-4. Run server with `python manage.py runserver` and visit [Localhost's admin panel](localhost:8000/admin). From there, create few fake users.
+5. Put username email and password for the admin.
 
-5. Load dummy data
+6. Run server with `python manage.py runserver` and visit [Localhost's admin panel](localhost:8000/admin). From there, create few fake users.
+
+7. Load dummy data
 <pre>
   python manage.py loadtestdata spending.Deposit:10 &&
   python manage.py loadtestdata spending.MonthlyBills:10 &&
@@ -42,4 +44,4 @@ python manage.py createsuperuser # create your superuser account
   python manage.py loadtestdata spending.Withdraw:10
 </pre>
 
-6. Now run server with `python manage.py runserver` and open http://localhost:8000 & enjoy :) !
+8. Now run server with `python manage.py runserver` and open http://localhost:8000 & enjoy :) !
