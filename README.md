@@ -18,13 +18,11 @@ Requirements:
 
 1. Open a terminal (or git bash) and clone this project:
 <pre> git clone git@github.com:freyWill/house_manager.git </pre>
-
 2. Change directory in your terminal inside the project:
 <pre>cd (yourpath)/house_manager</pre>
 
 3. Setup virtual environment
 <pre>virtualenv env</pre>
-
 4. Install requirements, create migrations, create dummy data, run it
 <pre>
 source env/bin/activate &&
@@ -33,12 +31,10 @@ pip install django-autofixture &&
 python manage.py migrate &&
 python manage.py createsuperuser # create your superuser account
 </pre>
-
-4. Run server with `python manage.py runserver` and visit [Localhost's admin panel](localhost:8000/admin). From there, create few fake users.
-
-5. Load dummy data
+5. Put username email and password for the admin.
+6. Run server with `python manage.py runserver` and visit [Localhost's admin panel](localhost:8000/admin). From there, create few fake users.
+7. Load dummy data
 <pre>
-
   python manage.py loadtestdata spending.Person:1 &&
   python manage.py loadtestdata spending.Deposit:10 &&
   python manage.py loadtestdata spending.MonthlyBill:10 &&
@@ -46,7 +42,7 @@ python manage.py createsuperuser # create your superuser account
   python manage.py loadtestdata spending.Withdraw:10
 </pre>
 
-6. Now run server with `python manage.py runserver` and open http://localhost:8000 & enjoy :) !
-
-Keep in mind that if you are logged in with an account that does not have a person associated with you, the index will complain.
+>Keep in mind that if you are logged in with an account that does not have a person associated with you, the index will complain.
 Make sure to create a Person profile for the root account as well.
+
+Now run server with `python manage.py runserver` and open http://localhost:8000 & enjoy :) !
