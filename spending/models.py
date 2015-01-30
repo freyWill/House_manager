@@ -43,12 +43,11 @@ class Purchase(models.Model):
 		return self.description
 
 class Deposit(models.Model):
-	person = models.ForeignKey(Person)
+	person = models.ForeignKey('Person')
 	ammount = models.FloatField(validators=[validate_deposit])
 	theDate = models.DateTimeField(default=timezone.now)
 
 class Withdraw(models.Model):
-	person = models.ForeignKey(Person)
+	person = models.ForeignKey('Person')
 	ammount = models.FloatField(validators = [validate_withdraw])
 	theDate = models.DateTimeField(default=timezone.now)
-	

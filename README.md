@@ -2,6 +2,9 @@
 It's a small django application that runs on top of the Raspberry Pi that is used as... a house manager.  
 I wrote the app to have some Django-fun but also, because having roommates requires some management.  
 This helps noting down groceries spending and bills.
+***
+
+Jquery and Boostrtap used heavily for fast phase development.
 
 # Bootstrap it
 
@@ -35,11 +38,15 @@ python manage.py createsuperuser # create your superuser account
 
 5. Load dummy data
 <pre>
+
+  python manage.py loadtestdata spending.Person:1 &&
   python manage.py loadtestdata spending.Deposit:10 &&
-  python manage.py loadtestdata spending.MonthlyBills:10 &&
-  python manage.py loadtestdata spending.Person:10 &&
+  python manage.py loadtestdata spending.MonthlyBill:10 &&
   python manage.py loadtestdata spending.Purchase:10 &&
   python manage.py loadtestdata spending.Withdraw:10
 </pre>
 
 6. Now run server with `python manage.py runserver` and open http://localhost:8000 & enjoy :) !
+
+Keep in mind that if you are logged in with an account that does not have a person associated with you, the index will complain.
+Make sure to create a Person profile for the root account as well.
