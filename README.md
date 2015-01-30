@@ -1,10 +1,17 @@
-# What is house manager
+# What is House manager
 It's a small django application that runs on top of the Raspberry Pi that is used as... a house manager.  
 I wrote the app to have some Django-fun but also, because having roommates requires some management.  
 This helps noting down groceries spending and bills.
 ***
 
 Jquery and Boostrtap used heavily for fast phase development.
+
+# Screenshots
+![](http://fc08.deviantart.net/fs71/f/2015/030/5/0/sticked_by_taiart-d8fyowm.jpg)
+***
+![](http://fc00.deviantart.net/fs71/f/2015/030/0/7/input_box_by_taiart-d8fyowj.png)
+***
+![](http://fc02.deviantart.net/fs71/f/2015/030/5/9/profile_by_taiart-d8fyowk.png)
 
 # Bootstrap it
 
